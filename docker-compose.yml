@@ -1,0 +1,36 @@
+version: '3'
+services:
+  # Configuração do serviço Prometheus
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090  # Mapeia a porta 9090 do host para a porta 9090 do contêiner Prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Mapeia o arquivo de configuração do Prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'  # Especifica o arquivo de configuração do Prometheus
+    depends_on:
+      - node-exporter  # Garante que o serviço node-exporter esteja pronto antes de iniciar o Prometheus
+    network_mode: "host"  # Usa o modo de rede do host para simplificar o acesso aos outros serviços
+
+  # Configuração do serviço Node Exporter
+  node-exporter:
+    image: prom/node-exporter
+    ports:
+      - 9100:9100  # Mapeia a porta 9100 do host para a porta 9100 do contêiner Node Exporter
+    network_mode: "host"  # Usa o modo de rede do host para simplificar o acesso aos outros serviços
+
+  # Configuração do serviço Python
+  simple-server-python:
+    build:
+      context: .
+      dockerfile: Dockerfile-python  # Especifica o Dockerfile para construir o serviço Python
+    ports:
+      - 8091:8091  # Mapeia a porta 8091 do host para a porta 8091 do contêiner Python
+
+  # Configuração do serviço Grafana
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000  # Mapeia a porta 3000 do host para a porta 3000 do contêiner Grafana
+    network_mode: "host"  # Usa o modo de rede do host para simplificar o acesso aos outros serviços

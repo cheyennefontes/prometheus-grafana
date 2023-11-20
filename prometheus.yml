@@ -1,0 +1,21 @@
+# Configurações globais para o Prometheus
+global:
+  # Frequência de coleta de métricas de todos os alvos
+  scrape_interval: 5s
+
+# Configurações específicas para a coleta de métricas
+scrape_configs:
+  # Configuração para o job chamado 'prometheus'
+  - job_name: 'prometheus'
+    # Configurações estáticas para este job
+    static_configs:
+      # Lista de alvos (targets) que o Prometheus deve coletar métricas
+      - targets: ['prometheus:9090']
+
+  # Configuração para o job chamado 'simple_server_python'
+  - job_name: 'simple_server_python'
+    # Configurações estáticas para este job
+    static_configs:
+      # Lista de alvos (targets) que o Prometheus deve coletar métricas
+      - targets: ['simple-server-python:8091']
+

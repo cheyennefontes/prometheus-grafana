@@ -1,0 +1,17 @@
+# Usa a imagem oficial do Python 3.8 como base
+FROM python:3.8
+
+# Define o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copia o arquivo requirements.txt para o diretório de trabalho
+COPY requirements.txt .
+
+# Instala as dependências listadas no requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia todo o conteúdo do diretório local para o diretório de trabalho no contêiner
+COPY . .
+
+# Comando padrão a ser executado quando o contêiner for iniciado
+CMD ["python", "server.py"]
