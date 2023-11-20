@@ -1,6 +1,5 @@
 # Lista de dependências Python para o projeto
 
-# Flask é um framework web leve para construir aplicativos web em Python
 Flask==2.0.2
 Werkzeug==2.0.2
 Jinja2==3.0.3
