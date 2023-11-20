@@ -6,6 +6,6 @@ Jinja2==3.0.3
 MarkupSafe==2.0.1
 itsdangerous==2.0.1
 
-# prometheus_client fornece uma biblioteca Python para instrumentar códigos e expor métricas para o Prometheus
+# Biblioteca Python para instrumentar códigos e expor métricas para o Prometheus
 prometheus_client==0.10.1
 
