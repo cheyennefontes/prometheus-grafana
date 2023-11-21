@@ -11,6 +11,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'  # Especifica o arquivo de configuração do Prometheus
     depends_on:
       - node-exporter  # Garante que o serviço node-exporter esteja pronto antes de iniciar o Prometheus
+      - simple-server-python  # Adicione essa linha para garantir que o serviço Python esteja pronto antes de iniciar o Prometheus
     network_mode: "host"  # Usa o modo de rede do host para simplificar o acesso aos outros serviços
 
   # Configuração do serviço Node Exporter
@@ -34,3 +35,4 @@ services:
     ports:
       - 3000:3000  # Mapeia a porta 3000 do host para a porta 3000 do contêiner Grafana
     network_mode: "host"  # Usa o modo de rede do host para simplificar o acesso aos outros serviços
+

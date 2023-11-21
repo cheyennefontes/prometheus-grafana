@@ -10,12 +10,19 @@ scrape_configs:
     # Configurações estáticas para este job
     static_configs:
       # Lista de alvos (targets) que o Prometheus deve coletar métricas
-      - targets: ['prometheus:9090']
+      - targets: ['localhost:9090']
 
   # Configuração para o job chamado 'simple_server_python'
   - job_name: 'simple_server_python'
     # Configurações estáticas para este job
     static_configs:
       # Lista de alvos (targets) que o Prometheus deve coletar métricas
-      - targets: ['simple-server-python:8091']
+      - targets: ['localhost:8091']
+
+  # Configuração para o job chamado 'node-exporter'
+  - job_name: 'node-exporter'
+    # Configurações estáticas para este job
+    static_configs:
+      # Lista de alvos (targets) que o Prometheus deve coletar métricas do Node Exporter
+      - targets: ['localhost:9100']
 
